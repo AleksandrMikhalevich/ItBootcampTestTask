@@ -1,16 +1,16 @@
-package by.itbootcamp.testtaskwithoutmodules.service.impl;
+package impl;
 
-import by.itbootcamp.testtaskwithoutmodules.repository.UserRepository;
-import by.itbootcamp.testtaskwithoutmodules.service.dto.UserDto;
-import by.itbootcamp.testtaskwithoutmodules.service.intefaces.UserService;
 
-import by.itbootcamp.testtaskwithoutmodules.service.mapper.UserMapper;
+import dto.UserDto;
+import interfaces.UserService;
 import lombok.RequiredArgsConstructor;
+import mapper.UserMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import repo.UserRepository;
 
 
 /**

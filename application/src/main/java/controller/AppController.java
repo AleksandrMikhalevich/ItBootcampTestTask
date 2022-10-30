@@ -1,8 +1,10 @@
-package app.controller;
+package controller;
 
 import dto.UserDto;
 import interfaces.UserService;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,28 +20,25 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class AppController {
 
+    private static final Logger logger = LogManager.getLogger(AppController.class);
+
     private final UserService userService;
 
     @GetMapping("/users")
     public ResponseEntity<Page<UserDto>> findAllUsers() {
-        try {
-            Page<UserDto> users = userService.findAll();
-            if (users.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(users, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        Page<UserDto> users = userService.findAll();
+        if (users.isEmpty()) {
+            logger.warn("Пользователи отсутствуют");
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
+        logger.info("Получение всех пользователей...");
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @PostMapping("/user")
-    public ResponseEntity<UserDto> addUser(@Valid @RequestBody UserDto userDto) {
-        try {
-            UserDto user = userService.addUser(userDto);
-            return new ResponseEntity<>(user, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<UserDto> addUser(@RequestBody @Valid UserDto userDto) {
+        UserDto user = userService.addUser(userDto);
+        logger.info("Новый пользователь создан.");
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 }

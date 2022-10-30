@@ -1,4 +1,4 @@
-package intefaces;
+package interfaces;
 
 
 import dto.UserDto;

@@ -1,7 +1,8 @@
-package by.itbootcamp.testtaskwithoutmodules.service.mapper;
+package mapper;
 
-import by.itbootcamp.testtaskwithoutmodules.repository.User;
-import by.itbootcamp.testtaskwithoutmodules.service.dto.UserDto;
+
+import dto.UserDto;
+import entities.User;
 import org.mapstruct.*;
 
 /**
@@ -11,9 +12,13 @@ import org.mapstruct.*;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface UserMapper {
 
+    @Mapping(target = "role", ignore = true)
     @Mapping(target = "id", ignore = true)
+    @Mapping(source = "roleId", target = "role.id")
+    @Mapping(source = "roleName", target = "role.name")
     User userDtoToUser(UserDto userDto);
 
+    @InheritInverseConfiguration(name = "userDtoToUser")
     UserDto userToUserDto(User user);
 
 }

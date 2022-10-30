@@ -1,4 +1,4 @@
-package handlers;
+package handler;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

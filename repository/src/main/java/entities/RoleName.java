@@ -1,4 +1,4 @@
-package enities;
+package entities;
 
 /**
  * @author Alex Mikhalevich

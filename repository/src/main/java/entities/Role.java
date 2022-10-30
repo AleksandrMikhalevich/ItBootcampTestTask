@@ -1,4 +1,4 @@
-package enities;
+package entities;
 
 import lombok.*;
 
@@ -12,7 +12,6 @@ import java.util.Set;
  * @created 2022-10-27 19:19
  */
 
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
