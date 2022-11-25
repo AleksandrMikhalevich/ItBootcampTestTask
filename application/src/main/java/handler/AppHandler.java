@@ -25,7 +25,7 @@ public class AppHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler
     public ErrorResponse handleGlobalExceptions(Exception e, WebRequest request) {
-        logger.error("При обработке запроса возникла ошибка со статусом 500.");
+        logger.error("An error with status code 500 occurred while processing the request.");
         return new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 new Date(),
@@ -42,7 +42,7 @@ public class AppHandler {
                 .stream()
                 .map(error -> new ValidationViolationResponse.Violation(error.getField(), error.getDefaultMessage()))
                 .collect(Collectors.toList());
-        logger.warn("Для создания пользователя использованы невалидные данные.");
+        logger.warn("Invalid data used to create a user.");
         return new ValidationViolationResponse(violations);
     }
 }

@@ -28,17 +28,17 @@ public class AppController {
     public ResponseEntity<Page<UserDto>> findAllUsers() {
         Page<UserDto> users = userService.findAll();
         if (users.isEmpty()) {
-            logger.warn("Пользователи отсутствуют");
+            logger.warn("No users yet.");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        logger.info("Получение всех пользователей...");
+        logger.info("Retrieving all users...");
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @PostMapping("/user")
     public ResponseEntity<UserDto> addUser(@RequestBody @Valid UserDto userDto) {
         UserDto user = userService.addUser(userDto);
-        logger.info("Новый пользователь создан.");
+        logger.info("New user created.");
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 }
