@@ -1,8 +1,8 @@
 package entities;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -37,8 +37,7 @@ public class Role {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Role)) return false;
-        Role role = (Role) o;
+        if (!(o instanceof Role role)) return false;
         return Objects.equals(getId(), role.getId());
     }
 
